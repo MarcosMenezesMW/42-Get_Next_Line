@@ -6,15 +6,15 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:44 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 17:41:24 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 18:21:03 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
 	while (*s != '\0')
@@ -25,10 +25,10 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char *ft_strdup(const char *s)
 {
-	char	*newstring;
-	int		i;
+	char *newstring;
+	int i;
 
 	i = 0;
 	newstring = malloc(sizeof(*s) * ft_strlen(s) + 1);
@@ -43,7 +43,7 @@ char	*ft_strdup(const char *s)
 	return (newstring);
 }
 
-char	*ft_strchr(const char *s)
+char *ft_strchr(const char *s)
 {
 	while (*s)
 	{
@@ -54,11 +54,11 @@ char	*ft_strchr(const char *s)
 	return (NULL);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
-	char	*newstring;
-	int		i;
-	int		j;
+	char *newstring;
+	int i;
+	int j;
 
 	i = 0;
 	j = 0;
@@ -82,25 +82,31 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (newstring);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	last_char;
+	char *substr;
+	size_t counter;
+	size_t len_alloc;
+	size_t len_s;
 
-	i = 0;
-	last_char = 0;
-	if (!src)
-		return (0);
-	while (src[i] != '\0')
+	if (!s)
+		return (NULL);
+	len_s = ft_strlen(s);
+	if (len_s < (size_t)start)
+		len_alloc = 1;
+	else if (len_s - (size_t)start > len)
+		len_alloc = len;
+	else
+		len_alloc = len_s - (size_t)start;
+	substr = (char *)malloc(sizeof(char) * (len_alloc + 1));
+	if (substr == NULL)
+		return (NULL);
+	counter = 0;
+	while (counter < len && (len_s > (size_t)(start + counter)))
 	{
-		if (i + 1 < size)
-		{
-			last_char++;
-			dst[i] = src[i];
-		}
-		i++;
+		substr[counter] = s[start + counter];
+		counter++;
 	}
-	if (size > 0)
-		dst[last_char] = '\0';
-	return (i);
+	substr[counter] = '\0';
+	return (substr);
 }

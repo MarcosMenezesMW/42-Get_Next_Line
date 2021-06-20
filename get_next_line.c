@@ -6,12 +6,11 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 17:57:33 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 18:20:44 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 int	manage_bytes(char *file_read, char **buffer)
 {
@@ -30,7 +29,7 @@ int	manage_bytes(char *file_read, char **buffer)
 	else
 	{
 		tmp = ft_strjoin(*buffer, file_read);
-		
+
 		if (!tmp)
 			return (GNL_ERROR);
 		free(*buffer);
@@ -42,11 +41,11 @@ int	manage_bytes(char *file_read, char **buffer)
 int	get_new_line(char **buffer, char **line, char *remaining_bytes)
 {
 	char	*temp;
-	int		size;
-	
+	size_t	size;
+
 	size = remaining_bytes - *buffer;
-	ft_strlcpy(*line, *buffer, size + 1);
-	temp = ft_strdup(&(*buffer)[size + 1]);
+	*line = ft_substr(*buffer, 0, size);
+	temp = ft_strdup(&(*buffer)[size + 2]);
 	free(*buffer);
 	*buffer = temp;
 	return (GNL);
@@ -58,7 +57,7 @@ int	get_next_line(int fd, char **line)
 	char		file_read[BUFFER_SIZE + 1];
 	char		*remaining_bytes;
 	int			bytes_read;
-	
+
 	if (!line || fd < 0)
 		return (-1);
 
@@ -68,7 +67,7 @@ int	get_next_line(int fd, char **line)
 		bytes_read = read(fd, file_read, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (GNL_ERROR);
-		
+
 		file_read[bytes_read] = '\0';
 		if (!manage_bytes(file_read, &buffer) && bytes_read != 0)
 			return(GNL_ERROR);
