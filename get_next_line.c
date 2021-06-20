@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 18:20:44 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 18:29:45 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	get_new_line(char **buffer, char **line, char *remaining_bytes)
 
 	size = remaining_bytes - *buffer;
 	*line = ft_substr(*buffer, 0, size);
-	temp = ft_strdup(&(*buffer)[size + 2]);
+	temp = ft_strdup(&(*buffer)[size + 1]);
 	free(*buffer);
 	*buffer = temp;
 	return (GNL);
