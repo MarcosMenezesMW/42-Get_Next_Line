@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:58 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 14:57:57 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 17:41:34 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 int		get_next_line(int fd, char **line);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 # define GNL_ERROR -1
 # define GNL_EOF 0

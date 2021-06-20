@@ -6,77 +6,77 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 15:08:02 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 17:57:33 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	get_line (char **line, char **buffer)
-{
-	int i;
-	char *temp;
-	
-	i = 0;
-	while (*buffer[i] != '\n')
-	{
-		*line[i] = *buffer[i];
-		i++;
-	}
-	*line[i] = '\0';
-	temp = ft_strdup(&(*buffer)[i + 1]);
-	free(*buffer);
-	*buffer = temp;
-	return (GNL);
-}
 
-static int	treat_bytes_read(char *from_read, char **buffer)
+int	manage_bytes(char *file_read, char **buffer)
 {
-	char	*temp;
-	
-	temp = NULL;
+	char	*tmp;
+
+	tmp = NULL;
 	if (*buffer == NULL)
 	{
-		*buffer = ft_strdup(from_read);
+		*buffer = ft_strdup(file_read);
 		if (!*buffer)
 		{
-			free (from_read);
+			free(file_read);
 			return (GNL_ERROR);
 		}
 	}
 	else
 	{
-		temp = ft_strjoin(*buffer, from_read);
-		if(!temp)
+		tmp = ft_strjoin(*buffer, file_read);
+		
+		if (!tmp)
 			return (GNL_ERROR);
-		free (*buffer);
-		*buffer = temp;
+		free(*buffer);
+		*buffer = tmp;
 	}
-	return (0);
+	return (GNL);
 }
 
-int			get_next_line(int fd, char **line)
+int	get_new_line(char **buffer, char **line, char *remaining_bytes)
 {
-	static char		*buffer;
-	char			from_read[BUFFER_SIZE + 1];
-	int				bytes_read;
-
-	if (!line || fd < 0)
-		return (GNL_ERROR);
+	char	*temp;
+	int		size;
 	
+	size = remaining_bytes - *buffer;
+	ft_strlcpy(*line, *buffer, size + 1);
+	temp = ft_strdup(&(*buffer)[size + 1]);
+	free(*buffer);
+	*buffer = temp;
+	return (GNL);
+}
+
+int	get_next_line(int fd, char **line)
+{
+	static char	*buffer;
+	char		file_read[BUFFER_SIZE + 1];
+	char		*remaining_bytes;
+	int			bytes_read;
+	
+	if (!line || fd < 0)
+		return (-1);
+
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
-		bytes_read = read(fd, from_read, BUFFER_SIZE);
+		bytes_read = read(fd, file_read, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (GNL_ERROR);
-		from_read[bytes_read] = '\0';
-		if (!treat_bytes_read(from_read, &buffer) && bytes_read != 0)
-			return (GNL_ERROR);
-		if (ft_strchr(buffer, '\n') != NULL)
-			return (get_line(line, &buffer));			
+		
+		file_read[bytes_read] = '\0';
+		if (!manage_bytes(file_read, &buffer) && bytes_read != 0)
+			return(GNL_ERROR);
+		remaining_bytes = ft_strchr(buffer);
+		if (remaining_bytes != NULL)
+			return (get_new_line(&buffer, line, remaining_bytes));
 	}
-	*line = ft_strdup(buffer);
+	*line =ft_strdup(buffer);
 	free(buffer);
 	buffer = NULL;
 	return (GNL_EOF);

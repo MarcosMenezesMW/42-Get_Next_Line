@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:44 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 14:57:27 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 17:41:24 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ char	*ft_strdup(const char *s)
 	return (newstring);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *s)
 {
-	if (!c)
-		return ((char *)s + ft_strlen(s));
 	while (*s)
 	{
-		if (*s == (unsigned char)c)
+		if (*s == '\n')
 			return ((char *)s);
 		s++;
 	}
@@ -82,4 +80,27 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	newstring[i] = '\0';
 	return (newstring);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	last_char;
+
+	i = 0;
+	last_char = 0;
+	if (!src)
+		return (0);
+	while (src[i] != '\0')
+	{
+		if (i + 1 < size)
+		{
+			last_char++;
+			dst[i] = src[i];
+		}
+		i++;
+	}
+	if (size > 0)
+		dst[last_char] = '\0';
+	return (i);
 }
