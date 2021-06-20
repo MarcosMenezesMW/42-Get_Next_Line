@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 14:53:38 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 15:08:02 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ static int	get_line (char **line, char **buffer)
 	int i;
 	char *temp;
 	
-	i = -1;
-	while (*buffer[++i] != '\n')
+	i = 0;
+	while (*buffer[i] != '\n')
+	{
 		*line[i] = *buffer[i];
+		i++;
+	}
+	*line[i] = '\0';
 	temp = ft_strdup(&(*buffer)[i + 1]);
 	free(*buffer);
 	*buffer = temp;
@@ -34,7 +38,7 @@ static int	treat_bytes_read(char *from_read, char **buffer)
 	if (*buffer == NULL)
 	{
 		*buffer = ft_strdup(from_read);
-		if (!buffer)
+		if (!*buffer)
 		{
 			free (from_read);
 			return (GNL_ERROR);
