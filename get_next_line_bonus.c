@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 19:29:32 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 19:32:20 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	get_new_line(char **buffer, char **line, char *remaining_bytes)
 
 int	get_next_line(int fd, char **line)
 {
-	static char	**buffer;
+	static char	*buffer[FD_SETSIZE];
 	char		file_read[BUFFER_SIZE + 1];
 	char		*remaining_bytes;
 	int			bytes_read;
@@ -85,6 +85,6 @@ int	get_next_line(int fd, char **line)
 	}
 	*line = ft_strdup(buffer[fd]);
 	free(buffer[fd]);
-	buffer = NULL;
+	buffer[fd] = NULL;
 	return (GNL_EOF);
 }
