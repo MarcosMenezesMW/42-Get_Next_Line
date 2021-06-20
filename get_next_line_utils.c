@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:44 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 18:21:03 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/20 18:45:10 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,21 @@ char *ft_strjoin(char const *s1, char const *s2)
 	return (newstring);
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char *substr;
-	size_t counter;
-	size_t len_alloc;
-	size_t len_s;
+	unsigned char	*p_src;
+	unsigned char	*p_dest;
+	size_t			i;
 
-	if (!s)
+	p_dest = dest;
+	p_src = (unsigned char *)src;
+	i = 0;
+	if (!p_dest && !p_src)
 		return (NULL);
-	len_s = ft_strlen(s);
-	if (len_s < (size_t)start)
-		len_alloc = 1;
-	else if (len_s - (size_t)start > len)
-		len_alloc = len;
-	else
-		len_alloc = len_s - (size_t)start;
-	substr = (char *)malloc(sizeof(char) * (len_alloc + 1));
-	if (substr == NULL)
-		return (NULL);
-	counter = 0;
-	while (counter < len && (len_s > (size_t)(start + counter)))
+	while (i < n)
 	{
-		substr[counter] = s[start + counter];
-		counter++;
+		p_dest[i] = p_src[i];
+		i++;
 	}
-	substr[counter] = '\0';
-	return (substr);
+	return (dest);
 }
