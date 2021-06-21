@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:58 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 19:20:19 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:50:03 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strcpy(char *dest, char *src, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 

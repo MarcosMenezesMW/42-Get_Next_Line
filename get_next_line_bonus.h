@@ -6,12 +6,12 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:58 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 19:41:45 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:53:16 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -21,18 +21,11 @@
 #  define BUFFER_SIZE 32
 # endif
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-
-int		get_next_line(int fd, char **line);
+int		get_next_line_bonus(int fd, char **line);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strcpy(char *dest, char *src, size_t len);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
