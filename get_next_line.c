@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:21:31 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:24:28 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,10 @@ int			get_buffer(char *from_read, char **buffer)
 	{
 		*buffer = ft_strdup(from_read);
 		if (!*buffer)
+		{
+			free(from_read);
 			return (GNL_ERROR);
-		free(from_read);
+		}
 	}
 	else
 	{
