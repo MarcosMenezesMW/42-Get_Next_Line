@@ -6,22 +6,22 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:17:58 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:21:31 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char	*ft_strchr(const char *s)
-// {
-// 	while (*s)
-// 	{
-// 		if (*s == '\n')
-// 			return ((char *)s);
-// 		s++;
-// 	}
-// 	return (NULL);
-// }
+char	*ft_strchr(const char *s)
+{
+	while (*s)
+	{
+		if (*s == '\n')
+			return ((char *)s);
+		s++;
+	}
+	return (NULL);
+}
 
 // int	manage_bytes(char *file_read, char **buffer)
 // {
@@ -97,7 +97,7 @@ int			get_buffer(char *from_read, char **buffer)
 	if (!*buffer)
 	{
 		*buffer = ft_strdup(from_read);
-		if (!*buffer);
+		if (!*buffer)
 			return (GNL_ERROR);
 		free(from_read);
 	}
