@@ -6,13 +6,13 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:53:08 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:55:52 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*ft_strchr(const char *s)
+static char	*ft_strchr(const char *s)
 {
 	while (*s)
 	{
