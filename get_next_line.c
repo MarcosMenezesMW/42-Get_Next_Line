@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:15:13 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:17:58 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,11 +140,11 @@ int			get_next_line(int fd, char **line)
 		bytes_read = read(fd, from_read, BUFFER_SIZE);
 		if (bytes_read < 0)
 			return (GNL_ERROR);
-		if (!get_buffer(from_read, &buffer) && from_read != 0)
+		if (!get_buffer(from_read, &buffer) && bytes_read != 0)
 			return(GNL_ERROR);
 		new_line = ft_strchr(buffer);
 		if (new_line != NULL)
-			return (get_newline(&buffer, &line, &new_line));
+			return (get_newline(&buffer, &new_line, line));
 	}
 	*line = ft_strdup(buffer);
 	free(buffer);
