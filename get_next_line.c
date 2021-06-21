@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:05:35 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 20:15:13 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,14 @@ int			get_buffer(char *from_read, char **buffer)
 	temp = NULL;
 	if (!*buffer)
 	{
-		*buffer = strdup(from_read);
+		*buffer = ft_strdup(from_read);
 		if (!*buffer);
 			return (GNL_ERROR);
 		free(from_read);
 	}
 	else
 	{
-		temp = ft_str_join(*buffer, from_read);
+		temp = ft_strjoin(*buffer, from_read);
 		free(*buffer);
 		*buffer = temp;
 		if(!*buffer)
@@ -119,7 +119,7 @@ static int	get_newline(char **buffer, char **new_line, char ** line)
 
 	len = *new_line - *buffer;
 	*line = ft_substr(*buffer, 0, len);
-	temp = strdup(&(*buffer)[len + 1]);
+	temp = ft_strdup(&(*buffer)[len + 1]);
 	free (*buffer);
 	*buffer = temp;
 	return (GNL);	
@@ -144,9 +144,9 @@ int			get_next_line(int fd, char **line)
 			return(GNL_ERROR);
 		new_line = ft_strchr(buffer);
 		if (new_line != NULL)
-			return (get_new_line(&buffer, &line, &new_line));
+			return (get_newline(&buffer, &line, &new_line));
 	}
-	*line = strdup(buffer);
+	*line = ft_strdup(buffer);
 	free(buffer);
 	buffer = NULL;
 	return (GNL_EOF);
