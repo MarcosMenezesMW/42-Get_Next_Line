@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:58 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 19:27:38 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 19:41:45 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 int		get_next_line(int fd, char **line);
 char	*ft_strdup(const char *s);
