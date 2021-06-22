@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:55:52 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 21:04:11 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	get_new_line(char **buffer, char **line, char *remaining_bytes)
 	return (GNL);
 }
 
-int	get_next_line_bonus(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	static char	*buffer[FD_SETSIZE];
 	char		file_read[BUFFER_SIZE + 1];
