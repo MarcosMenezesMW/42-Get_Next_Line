@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:58 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:53:16 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/21 21:01:51 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 int		get_next_line_bonus(int fd, char **line);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *s);
-char	*ft_strchr(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
