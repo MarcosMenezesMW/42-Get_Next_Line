@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/21 20:49:06 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:47:07 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static int	get_newline(char **buffer, char **new_line, char **line)
 	char	*temp;
 
 	len = *new_line - *buffer;
-	*line = ft_substr(*buffer, 0, len);
+	*line = malloc(len + 1);
+	ft_strlcpy(*line, *buffer, len + 1);
 	temp = ft_strdup(&(*buffer)[len + 1]);
 	free (*buffer);
 	*buffer = temp;
