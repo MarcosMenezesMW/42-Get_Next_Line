@@ -6,22 +6,11 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/22 21:47:07 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:57:12 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*ft_strchr(const char *s)
-{
-	while (*s)
-	{
-		if (*s == '\n')
-			return ((char *)s);
-		s++;
-	}
-	return (NULL);
-}
 
 static int	get_buffer(char *from_read, char **buffer)
 {

@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:44 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/20 19:28:46 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/22 21:59:15 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (i);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static char	*ft_strchr(const char *s)
 {
-	char	*substr;
-	size_t	s_len;
-	size_t	max_len;
-
-	if (!s)
-		return (NULL);
-	s_len = ft_strlen((char *)s);
-	if (start < s_len)
-		max_len = s_len - start;
-	else
-		max_len = 0;
-	if (max_len > len)
-		max_len = len;
-	substr = malloc(sizeof(char) * (max_len + 1));
-	if (!substr)
-		return (NULL);
-	ft_strlcpy(substr, s + start, max_len + 1);
-	return (substr);
+	while (*s)
+	{
+		if (*s == '\n')
+			return ((char *)s);
+		s++;
+	}
+	return (NULL);
 }
