@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:44 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/22 21:59:15 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/22 22:05:39 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (i);
 }
 
-static char	*ft_strchr(const char *s)
+char	*ft_strchr(const char *s)
 {
 	while (*s)
 	{
