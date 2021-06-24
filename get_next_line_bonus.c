@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/22 22:02:20 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/23 21:55:02 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,18 @@ static int	get_newline(char **buffer, char **new_line, char **line)
 	return (GNL);
 }
 
+static int	last_line(char **line, char **buffer)
+{
+	*line = ft_strdup(*buffer);
+	free(*buffer);
+	*buffer = NULL;
+	return (GNL_EOF);
+}
+
 int	get_next_line(int fd, char **line)
 {
 	static char		*buffer[FD_SETSIZE];
-	char			from_read[BUFFER_SIZE + 1];
+	char			*from_read;
 	char			*new_line;
 	int				bytes_read;
 
@@ -63,18 +71,19 @@ int	get_next_line(int fd, char **line)
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
+		from_read = malloc(BUFFER_SIZE + 1);
+		if (!from_read)
+			return (GNL_ERROR);
 		bytes_read = read(fd, from_read, BUFFER_SIZE);
 		if (bytes_read < 0)
-			return (GNL_ERROR);
+			return (free(from_read), GNL_ERROR);
 		from_read[bytes_read] = '\0';
 		if (!get_buffer(from_read, &buffer[fd]) && bytes_read != 0)
-			return (GNL_ERROR);
+			return (free(from_read), GNL_ERROR);
+		free(from_read);
 		new_line = ft_strchr(buffer[fd]);
 		if (new_line != NULL)
 			return (get_newline(&buffer[fd], &new_line, line));
 	}
-	*line = ft_strdup(buffer[fd]);
-	free(buffer[fd]);
-	buffer[fd] = NULL;
-	return (GNL_EOF);
+	return (last_line(line, &buffer[fd]));
 }
