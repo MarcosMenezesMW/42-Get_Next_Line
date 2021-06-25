@@ -6,7 +6,7 @@
 /*   By: mameneze <mwmms@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/08 19:24:36 by mameneze          #+#    #+#             */
-/*   Updated: 2021/06/23 21:44:16 by mameneze         ###   ########.fr       */
+/*   Updated: 2021/06/25 19:58:02 by mameneze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	get_next_line(int fd, char **line)
 	char			*new_line;
 	int				bytes_read;
 
-	if (!line || fd < 0)
+	if (!line || fd < 0 || BUFFER_SIZE <= 0)
 		return (GNL_ERROR);
 	bytes_read = 1;
 	while (bytes_read > 0)
